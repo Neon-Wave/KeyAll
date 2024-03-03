@@ -1,0 +1,11 @@
+# KeyAll NeonWave Development
+# This plugin only works with ExcellentCrates
+
+# The Interval for KeyAll events (In seconds)
+timerInterval: 60
+
+# Name of the key
+keyName: Emerald
+
+# The amount of keys
+keyAmount: 1

@@ -1,0 +1,15 @@
+name: KeyAll
+version: 0.0.3
+main: dev.neonwave.keyall.KeyAll
+api-version: '1.17'
+description: Automatic KeyAll plugin for minecraft servers.
+commands:
+  keyall:
+    description: Reload the KeyAll configuration
+    usage: /keyall reload
+    permission: keyall.reload
+
+depend:
+  - ExcellentCrates
+softdepend:
+  - PlaceholderAPI
