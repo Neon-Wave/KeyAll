@@ -62,15 +62,20 @@ public class KeyAll extends JavaPlugin implements Listener {
                         player.sendMessage(ChatColor.RED + "Timer reached 0!");
                     }
                 }
-                console.sendMessage(ChatColor.YELLOW + "Executing command: Command");
+                console.sendMessage(ChatColor.GREEN + "Congratulations! You've been awarded a key as part of our Key All event!");
                 Bukkit.getScheduler().runTask(this, () -> {
-                    Bukkit.dispatchCommand(console, "excellentcrates key giveall " + keyName + " " + keyAmount);
+                    if (!Bukkit.getServer().getOnlinePlayers().isEmpty()) {
+                        Bukkit.dispatchCommand(console, "excellentcrates key giveall " + keyName + " " + keyAmount);
+                    } else {
+                        getLogger().info("No players online. Command not executed.");
+                    }
                 });
 
                 timerInterval = config.getInt("timerInterval", 60);
             }
         }, 20L, 20L);
     }
+
 
     private void stopTimer() {
         Bukkit.getScheduler().cancelTask(taskId);
