@@ -21,10 +21,10 @@ public class ReloadCommand implements CommandExecutor {
                     player.sendMessage(ChatColor.GREEN + "KeyAll has been reloaded");
                 }
 
-                return true; // Indicate successful handling of the command
+                return true; 
             } catch (Exception e) {
-                e.printStackTrace(); // Print stack trace for debugging purposes
-                return false; // Indicate failure
+                e.printStackTrace();
+                return false;
             }
         }
         return false;
