@@ -8,8 +8,5 @@ commands:
     description: Reload the KeyAll configuration
     usage: /keyall reload
     permission: keyall.reload
-
-depend:
-  - ExcellentCrates
 softdepend:
   - PlaceholderAPI
