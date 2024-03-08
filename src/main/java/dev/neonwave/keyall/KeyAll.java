@@ -5,6 +5,7 @@ import dev.neonwave.keyall.Commands.ReloadCommand;
 import dev.neonwave.keyall.PlaceholderAPI.KeyAllPlaceholder;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -50,22 +51,52 @@ public class KeyAll extends JavaPlugin implements Listener {
     }
 
     private void startTimer() {
-        final String keyName = config.getString("keyName");
-        final String keyAmount = config.getString("keyAmount");
 
         taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
             timerInterval--;
 
+            if (timerInterval < 5) {
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    if (player.isOnline()) {
+                        String message = config.getString("notifyKeyAll");
+                        player.sendMessage(translateColorCodes(message));
+                    }
+                }
+            }
+
+            if (timerInterval < 10) {
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    if (player.isOnline()) {
+                        String message = config.getString("notifyKeyAll");
+                        player.sendMessage(translateColorCodes(message));
+                    }
+                }
+            }
+
+            if (timerInterval < 15) {
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    if (player.isOnline()) {
+                        String message = config.getString("notifyKeyAll");
+                        player.sendMessage(translateColorCodes(message));
+                    }
+                }
+            }
+
             if (timerInterval <= 0) {
                 for (Player player : Bukkit.getOnlinePlayers()) {
                     if (player.isOnline()) {
-                        player.sendMessage(ChatColor.RED + "Timer reached 0!");
+                        String soundName = config.getString("sound", "ENTITY_EXPERIENCE_ORB_PICKUP");
+                        Sound sound = Sound.valueOf(soundName);
+                        player.playSound(player.getLocation(), sound, 1.0f, 1.0f);
                     }
                 }
+
+
                 console.sendMessage(ChatColor.GREEN + "Congratulations! You've been awarded a key as part of our Key All event!");
                 Bukkit.getScheduler().runTask(this, () -> {
+                    final String command = config.getString("command");
                     if (!Bukkit.getServer().getOnlinePlayers().isEmpty()) {
-                        Bukkit.dispatchCommand(console, "excellentcrates key giveall " + keyName + " " + keyAmount);
+                        Bukkit.dispatchCommand(console, command);
                     } else {
                         getLogger().info("No players online. Command not executed.");
                     }
@@ -76,8 +107,11 @@ public class KeyAll extends JavaPlugin implements Listener {
         }, 20L, 20L);
     }
 
-
     private void stopTimer() {
         Bukkit.getScheduler().cancelTask(taskId);
+    }
+
+    private String translateColorCodes(String message) {
+        return ChatColor.translateAlternateColorCodes('&', message);
     }
 }
