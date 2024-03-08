@@ -1,11 +1,20 @@
-# KeyAll NeonWave Development
+# KeyAll (0.1.1) NeonWave Development
 # This plugin only works with ExcellentCrates
 
 # The Interval for KeyAll events (In seconds)
 timerInterval: 60
 
-# Name of the key
-keyName: Emerald
+# Command to be executed when timer ends
+command: "say KeyAll is installed"
 
-# The amount of keys
-keyAmount: 1
+# Flexibility
+
+# Notification message sent at different times
+# Placeholder: %keyall_timer%
+# Sent at: 15m, 10m, 5m
+notifyKeyAll: ""
+
+# The sound sent at the KeyAll event
+# Should be a sound available in Minecraft
+# Default ENTITY_EXPERIENCE_ORB_PICKUP
+sound: ENTITY_EXPERIENCE_ORB_PICKUP
