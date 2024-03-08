@@ -1,5 +1,5 @@
 name: KeyAll
-version: 0.0.3
+version: 0.1.1
 main: dev.neonwave.keyall.KeyAll
 api-version: '1.17'
 description: Automatic KeyAll plugin for minecraft servers.
